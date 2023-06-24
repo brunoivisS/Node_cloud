@@ -17,10 +17,11 @@ const api = process.env.API_KEY_DEV;
 app.get("/uploads/:value", ( req, res) => {
     const path = require("path");
     const autho = req.headers.authorization;
+
     if(autho!= api){
         return res.status(404).json({
             erro: true,
-            mensagem: "you aren't permission to acess this page!"
+            mensagem: "you haven't permission to acess this page!"
         }) 
     } else{
         const value = req.params;
@@ -38,22 +39,34 @@ app.get("/uploads/:value", ( req, res) => {
 });
 
 
-//aqui vai ter outro token 
+//here is the other nwe token to upload new files
+// create a new token for this routes in the future
 app.post("/upload",type,(req, res) => { 
-if(req.file == null){
-    return res.status(404).json({
-        erro: true,
-        mensagem: "Vai conseguir um emprego para de fazer projetos com framework"
-    })
-} else {
-   const vai = req.file.path;
-    console.log(vai);
-    return res.json(req.file);   
-}   
+    const authup = req.headers.authorization;
+    const tokenUplo = process.env.API_KEY_DEV;
+    const vai = req.file?.path;
+
+    try {
+        if(authup === tokenUplo){
+            if(req.file === null){
+                return res.status(409).json({
+                    erro: true,
+                    mensagem: "Vai conseguir um emprego para de fazer projetos com framework."
+                })
+            } else {
+                console.log(vai);
+                return res.json(req.file);   
+            }   
+        } else {
+            return res.status(403).json({
+                erro: true,
+                mensagem: "you aren't permission to acess this page!"
+            }) 
+        }
+    } catch (err){
+        console.log(err);
+    }
 });
-
-
-
 
 app.use(( req, res) => {
     return res.status(404).send("Page not found.");
