@@ -1,8 +1,10 @@
 import express from 'express';
 import multer from 'multer';
 import {storage} from './config/multer.config';
+import { returnNomesFiles } from './services/NomeFiles/Nomesfiles';
+import { returnTokenFile } from './services/TokenFile/TokenFile';
 require('dotenv').config({path: './.env'});
-
+const bcrypt = require('bcrypt');
 
 const app = express();
 const upload = multer({ storage: storage});
@@ -17,7 +19,7 @@ const api = process.env.API_KEY_DEV;
 app.get("/uploads/:value", ( req, res) => {
     const path = require("path");
     const autho = req.headers.authorization;
-
+    
     if(autho!= api){
         return res.status(404).json({
             erro: true,
