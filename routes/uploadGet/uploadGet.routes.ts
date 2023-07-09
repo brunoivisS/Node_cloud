@@ -1,4 +1,4 @@
-require('dotenv').config({path: '../.env'});
+require('dotenv').config({path: '.env'});
 import { Router } from 'express';
 import File from '../../controller/uploadGet/uploadGet';
 const uploadGetRoutes = Router();

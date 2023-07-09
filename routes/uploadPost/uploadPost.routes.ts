@@ -1,4 +1,4 @@
-require('dotenv').config({path: '../.env'});
+require('dotenv').config({path: '.env'});
 import { Router } from 'express';
 import multer from 'multer';
 import Upload from '../../controller/uploadPost/uploadPost'
