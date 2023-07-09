@@ -49,7 +49,7 @@ export function returnNomesFiles(): void {
 
 }
 
-export function returnNomesFileForNew():any {
+export function returnNomesFileForNew() {
   // return for varival 435ufef90fefw90.mp3
   let namewithExten = getname();
   if(namewithExten === undefined) {
