@@ -5,8 +5,8 @@ const uploadGetRoutes = Router();
 
 uploadGetRoutes.get("/uploads/:value", ( req, res) => {
     try {
-        const test = new File();
-        test.returnFile(req,res);
+        const fileR = new File();
+        fileR.returnFile(req,res);
     } catch (err) {
         console.log(err)
     }
