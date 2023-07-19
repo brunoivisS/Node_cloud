@@ -14,8 +14,6 @@ let originalname:string;
       try {
           return originalname;
       } catch (err){
-
-        console.log('Erro de sorveterio',err);
         return undefined
       }
   }

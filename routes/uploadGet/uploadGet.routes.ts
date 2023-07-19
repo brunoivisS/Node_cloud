@@ -8,7 +8,7 @@ uploadGetRoutes.get("/uploads/:value", ( req, res) => {
         const fileR = new File();
         fileR.returnFile(req,res);
     } catch (err) {
-        console.log(err)
+        return res.status(500).send("<html><head><title>Erro interno do servidor</title></head><body><h1>Erro interno do servidor</h1><p>O servidor encontrou um erro interno que o impediu de atender à solicitação.</p></body></html>");
     }
    });
 

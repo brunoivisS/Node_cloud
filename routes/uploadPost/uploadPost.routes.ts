@@ -14,9 +14,7 @@ uploadPostRoutes.post("/upload",type,(req, res) => {
                 const uploadF = new Upload();
                 uploadF.uploadfile(req,res);
             } catch (err) {
-                if(res.status(500)){
-                    console.log("fsjkhfuisf")
-                } 
+                return res.status(500).send("<html><head><title>Erro interno do servidor</title></head><body><h1>Erro interno do servidor</h1><p>O servidor encontrou um erro interno que o impediu de atender à solicitação.</p></body></html>");
         }
 });
 export default uploadPostRoutes;

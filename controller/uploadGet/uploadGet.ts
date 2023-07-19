@@ -1,4 +1,4 @@
-const api = process.env.API_KEY_DEV;
+const api = process.env.API_KEY_GET;
 const uploadGet = '../../uploads/';
 
 class File{
@@ -6,17 +6,13 @@ class File{
         const path = require("path");
         const autho = req.headers.authorization;
         if(autho!= api){
-            return res.status(404).json({
-                erro: true,
-                mensagem: "you haven't permission to acess this page!"
-            }) 
+            return res.status(403).send("<h1>you aren't permission to acess this page!</h1>") 
         } else{
             const value = req.params;
             const file:string = path.join(__dirname, uploadGet+value.value);
             res.sendFile(file, function (err:any){
                 if(err) {
-                    console.log("Error");
-                    console.log(err);
+                    return res.status(404).send("<h1>page not found!</h1>") 
                 } else {
                 return file;
                 
